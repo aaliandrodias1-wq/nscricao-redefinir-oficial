@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ficha de Inscrição - Reset — De Volta ao Primeiro Amor</title>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+body{
+    background:#0d0d0d;
+    font-family:Arial;
+    display:flex;
+    justify-content:center;
+    padding:20px;
+}
+
+.container{
+    width:100%;
+    max-width:450px;
+    background:#06090e;
+    padding:20px;
+    border-radius:20px;
+    color:#fff;
+    border:2px solid #dfb963;
+}
+
+.info-igreja{
+    text-align:center;
+    margin-bottom:20px;
+    padding-bottom:15px;
+    border-bottom:1px solid #333;
+}
+
+.info-igreja p{
+    font-size:12px;
+    color:#aaa;
+    margin:5px 0;
+}
+
+.botoes-igreja{
+    display:flex;
+    gap:10px;
+    margin-top:12px;
+}
+
+.btn-link{
+    flex:1;
+    padding:10px;
+    border-radius:8px;
+    text-decoration:none;
+    font-size:12px;
+    font-weight:bold;
+    text-align:center;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:6px;
+}
+
+.btn-maps{
+    background:#4285F4;
+    color:#fff;
+}
+
+.btn-insta{
+    background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);
+    color:#fff;
+}
+
+label{
+    display:block;
+    margin-top:10px;
+    font-size:12px;
+    color:#aaa;
+}
+
+input, select{
+    width:100%;
+    padding:10px;
+    margin-top:5px;
+    border-radius:8px;
+    border:1px solid #333;
+    background:#0f1722;
+    color:#fff;
+    font-family:Arial;
+    font-size:14px;
+    box-sizing: border-box;
+}
+
+select option {
+    background:#0f1722;
+    color:#fff;
+}
+
+button{
+    width:100%;
+    padding:14px;
+    margin-top:15px;
+    border:none;
+    border-radius:10px;
+    font-weight:bold;
+    cursor:pointer;
+    background:#dfb963;
+    color:#000;
+}
+
+#hiddenPDF{
+    position:fixed;
+    left:-10000px;
+    top:0;
+    width:800px;
+    background:#fff;
+    color:#000;
+    padding:30px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="info-igreja">
+    <h2 style="text-align:center;margin:5px 0;">FICHA DE INSCRIÇÃO</h2>
+    <p style="text-align:center;color:#dfb963;margin:0 0 10px 0;"><b>RESET — DE VOLTA AO PRIMEIRO AMOR</b></p>
+    <p style="text-align:center;color:#dfb963;margin:0 0 10px 0;">14 DE NOVEMBRO DE 2026 – DAS 15 ÀS 21 HORAS</p>
+    <p><i class="fas fa-church"></i> Igreja Pentecostal Casa do Oleiro</p>
+    <p><i class="fas fa-map-marker-alt"></i> Avenida Mâncio Martins Ataíde, 201 - São José</p>
+    <p style="font-size:11px;">Rio Novo do Sul - ES</p>
+    
+    <div class="botoes-igreja">
+        <a href="https://www.google.com/maps/search/?api=1&query=Avenida+M%C3%A2ncio+Martins+Ata%C3%ADde%2C+201%2C+S%C3%A3o+Jos%C3%A9%2C+Rio+Novo+do+Sul%2C+ES" target="_blank" class="btn-link btn-maps">
+            <i class="fas fa-location-dot"></i> Ver no Maps
+        </a>
+        <a href="https://www.instagram.com/iptcasadooleiropk/" target="_blank" class="btn-link btn-insta">
+            <i class="fab fa-instagram"></i> @iptcasadooleiropk
+        </a>
+    </div>
+</div>
+
+<label>Nome</label><input id="nome">
+<label>Sobrenome</label><input id="sobrenome">
+<label>Data de Nascimento</label><input id="nascimento" type="date">
+<label>RG</label><input id="rg">
+<label>CPF</label><input id="cpf">
+<label>Profissão</label><input id="profissao">
+<label>Sexo</label>
+<select id="sexo">
+    <option value="">Selecione</option>
+    <option value="Masculino">Masculino</option>
+    <option value="Feminino">Feminino</option>
+</select>
+<label>Celular</label><input id="celular">
+<label>E-mail</label><input id="email" type="email">
+<label>Instagram</label><input id="instagram" placeholder="@seuusuario">
+
+<label>CEP</label><input id="cep">
+<label>Rua</label><input id="rua">
+<label>Número</label><input id="numero">
+<label>Bairro</label><input id="bairro">
+<label>Cidade</label><input id="cidade">
+<label>Estado</label><input id="estado">
+
+<label>Igreja que Congrega</label><input id="igreja">
+<label>Nome do Pastor</label><input id="pastor">
+<label>Exerce função na igreja, Qual?</label><input id="funcao">
+
+<label>Possui problema de saúde, Qual?</label><input id="saude">
+<label>Usa remédio controlado, Qual?</label><input id="remedio">
+<label>Possui alergia a remédio, alimento ou bebida?</label><input id="alergia">
+<label>Já tomou vacina contra COVID?</label>
+<select id="vacina">
+    <option value="">Selecione</option>
+    <option value="Sim">Sim</option>
+    <option value="Não">Não</option>
+</select>
+<label>Tipo Sanguíneo</label><input id="sangue">
+
+<label>Algum conhecido irá participar com você? Nome/Parentesco</label><input id="conhecido">
+<label>Quem te indicou a participar da Imersão Profética?</label><input id="indicacao">
+
+<label>Taxa de Inscrição</label>
+<select id="taxa_inscricao">
+    <option value="">Selecione uma opção</option>
+    <option value="130">R$ 130,00 - Encontrista, primeira vez</option>
+    <option value="70">R$ 70,00 - Para Trabalhadores</option>
+</select>
+
+<button id="btnBaixar">BAIXAR PDF</button>
+
+</div>
+
+<div id="hiddenPDF"></div>
+
+<script>
+function val(id){
+    return document.getElementById(id)?.value || "";
+}
+
+function valTaxa(){
+    const select = document.getElementById('taxa_inscricao');
+    if(!select.value) return "";
+    return select.value === "130"
+        ? "R$ 130,00 - Encontrista, primeira vez"
+        : "R$ 70,00 - Para Trabalhadores";
+}
+
+function numero(){
+    return "IP-" + Date.now().toString().slice(-6);
+}
+
+function montar(num){
+return `
+<div id="pdfBox" style="font-family:Arial;background:#fff;color:#000;padding:30px;width:740px;box-sizing:border-box;">
+
+<div style="text-align:center;">
+    <h2>FICHA DE INSCRIÇÃO</h2>
+    <p style="color:#000;"><b>RESET — DE VOLTA AO PRIMEIRO AMOR</b></p>
+    <p style="color:#000;"><b>14 DE NOVEMBRO DE 2026 – DAS 15 ÀS 21 HORAS</b></p>
+    <p><b>Igreja Pentecostal Casa do Oleiro</b></p>
+    <p>Avenida Mâncio Martins Ataíde, 201 - São José, Rio Novo do Sul - ES</p>
+    <p style="font-size:12px;color:#555;">Instagram: @iptcasadooleiropk</p>
+    <p style="font-size:12px;color:#555;">Horário: 15:00 às 21:00 (Total: 6 horas)</p>
+    <p style="margin-top:10px;"><b>INSCRIÇÃO:</b> ${num}</p>
+</div>
+
+<hr style="border:0;border-top:1px solid #ccc;margin:15px 0;">
+
+<div style="display:flex;justify-content:space-between;">
+
+    <div style="width:48%;">
+        <p style="background:#f2f2f2;padding:4px;font-weight:bold;font-size:13px;margin-bottom:8px;">DADOS PESSOAIS</p>
+        <p style="font-size:12px;margin:4px 0;"><b>Nome:</b> ${val('nome')} ${val('sobrenome')}</p>
+        <p style="font-size:12px;margin:4px 0;"><b>Nascimento:</b> ${val('nascimento')}</p>
+        <p style="font-size:12px;margin:4px 0;"><b>RG:</b> ${val('rg')}</p>
+        <p style="font-size:12px;margin:4px 0;"><b>CPF:</b> ${val('cpf')}</p>
+        <p style="font-size:12px;margin:4px 0;"><b>Profissão:</b> ${val('profissao')}</p>
+        <p style="font-size:12px;margin:4px 0;"><b>Sexo:</b> ${val('sexo')}</p>
+        <p style="font-size:12px;margin:4px 0;"><b>Celular:</b> ${val('celular')}</p>
+        <p style="font-size:12px;margin:4px 0;"><b>E-mail:</b> ${val('email')}</p>
+        <p style="font-size:12px;margin:4px 0;"><b>Instagram:</b> ${val('instagram')}</p>
+
+        <p style="background:#f2f2f2;padding:4px;font-weight:bold;font-size:13px;margin:15px 0 8px 0;">ENDEREÇO</p>
+        <p style="font-size:12px;margin:4px 0;"><b>CEP:</b> ${val('cep')}</p>
+        <p style="font-size:12px;margin:4px 0;"><b>Rua:</b> ${val('rua')}</p>
+        <p style="font-size:12px;margin:4px 0;"><b>Número:</b> ${val('numero')}</p>
+        <p style="font-size:12px;margin:4px 0;"><b>Bairro:</b> ${val('bairro')}</p>
+        <p style="font-size:12px;margin:4px 0;"><b>Cidade/Estado:</b> ${val('cidade')} - ${val('estado')}</p>
+    </div>
+
+    <div style="width:48%;">
+        <p style="background:#f2f2f2;padding:4px;font-weight:bold;font-size:13px;margin-bottom:8px;">IGREJA E MINISTÉRIO</p>
+        <p style="font-size:12px;margin:4px 0;"><b>Igreja que Congrega:</b> ${val('igreja')}</p>
+        <p style="font-size:12px;margin:4px 0;"><b>Nome do Pastor:</b> ${val('pastor')}</p>
+        <p style="font-size:12px;margin:4px 0;"><b>Função na igreja:</b> ${val('funcao')}</p>
+
+        <p style="background:#f2f2f2;padding:4px;font-weight:bold;font-size:13px;margin:15px 0 8px 0;">SAÚDE</p>
+        <p style="font-size:12px;margin:4px 0;"><b>Problema de saúde:</b> ${val('saude')}</p>
+        <p style="font-size:12px;margin:4px 0;"><b>Remédio controlado:</b> ${val('remedio')}</p>
+        <p style="font-size:12px;margin:4px 0;"><b>Possui alergia:</b> ${val('alergia')}</p>
+        <p style="font-size:12px;margin:4px 0;"><b>Vacina COVID:</b> ${val('vacina')}</p>
+        <p style="font-size:12px;margin:4px 0;"><b>Tipo Sanguíneo:</b> ${val('sangue')}</p>
+
+        <p style="background:#f2f2f2;padding:4px;font-weight:bold;font-size:13px;margin:15px 0 8px 0;">INFORMAÇÕES ADICIONAIS</p>
+        <p style="font-size:12px;margin:4px 0;"><b>Acompanhante:</b> ${val('conhecido')}</p>
+        <p style="font-size:12px;margin:4px 0;"><b>Quem indicou?:</b> ${val('indicacao')}</p>
+        <p style="font-size:12px;margin:4px 0;"><b>Taxa de Inscrição:</b> ${valTaxa()}</p>
+    </div>
+
+</div>
+
+<hr style="border:0;border-top:1px dashed #ccc;margin:20px 0 10px 0;">
+<p style="font-size:11px;text-align:center;margin:0;"><b>Taxa Inscrição:</b> R$ 130,00 - Encontrista, primeira vez | R$ 70,00 - Para Trabalhadores</p>
+<p style="text-align:center;font-size:10px;color:#777;margin-top:5px;">Sistema automático de inscrição</p>
+
+</div>
+`;
+}
+
+async function gerarPDF(num){
+    const { jsPDF } = window.jspdf;
+    const container = document.getElementById("hiddenPDF");
+    container.innerHTML = montar(num);
+    const element = document.getElementById("pdfBox");
+    await new Promise(r => setTimeout(r, 1000));
+    const canvas = await html2canvas(element, {
+        scale:2,
+        useCORS:true,
+        backgroundColor:"#ffffff",
+        allowTaint: true
+    });
+    const img = canvas.toDataURL("image/png");
+    const pdf = new jsPDF("p","mm","a4");
+    const width = pdf.internal.pageSize.getWidth();
+    const height = (canvas.height * width) / canvas.width;
+    pdf.addImage(img,"PNG",0,0,width,height);
+    return pdf;
+}
+
+document.getElementById('btnBaixar').addEventListener('click', async function(){
+    if(!document.getElementById('taxa_inscricao').value){
+        alert("Por favor, selecione a Taxa de Inscrição antes de continuar.");
+        return;
+    }
+    try{
+        const num = numero();
+        const pdf = await gerarPDF(num);
+        pdf.save(`inscricao-${num}.pdf`);
+    }catch(e){
+        console.error(e);
+        alert("Erro ao gerar PDF: " + e);
+    }
+});
+</script>
+
+</body>
+</html>
